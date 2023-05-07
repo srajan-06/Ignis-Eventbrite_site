@@ -1,0 +1,58 @@
+{% extends "api/event_base.html" %}
+{% block preevent %}
+
+{% comment %} An option to create a event will be given on left side and the All events are listed on right side which is divided
+in the ratio 3:9 {% endcomment %}
+<div class="col-md-3">
+
+  <div class="content">
+
+    {% if user.is_authenticated %}
+      <h2>Welcome back! {{user.username}}</h2>
+    {% endif %}
+  </div>
+  {% if user.is_authenticated %}
+    <a href="{% url 'api:create' %}" class="btn btn-md btn-fill btn-default">
+      <span class="fa fa-plus"><span> </span>Create New Event</span>
+    </a>
+  {% endif %}
+
+</div>
+
+{% endblock %}
+
+{% block event_content %}
+  <div class="col-md-9">
+    <div class="list-group">
+      {% for event in object_list %}
+  		  <a href="{% url 'api:single' slug=event.slug %}"
+  		     class="list-group-item list-group-item-action flex-column align-items-start">
+               <div class="container">
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img class="card-img img-fluid rounded-start" src={{ event.image.url }} alt="Error404" >
+              
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h2 class="card-title">{{event.name}}</h2>
+                          <p class="mb-1"><span class="fa fa-calendar"></span> {{ event.date }}</p>
+                          <p class="mb-1"><span class="fa fa-clock-o"></span> {{ event.time }}</p>
+                          <p class="mb-1"><span class="fa fa-map-marker"></span> {{ event.location }}</p>
+                          <h4 class="mb-1">{{ event.description|safe }}</h4>
+                          <div class="d-flex w-40 justify-content-between">
+                            <h4><small class="text-muted"><span class="badge badge-secondary">
+                               {{ event.likes.count }}</span> like{{ event.likes.count|pluralize }}</small></h4>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+  		  </a>
+  		{% endfor %}
+    </div>
+  </div>
+{% endblock %}

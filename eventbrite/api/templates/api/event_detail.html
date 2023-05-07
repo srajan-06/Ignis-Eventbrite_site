@@ -1,0 +1,34 @@
+{% extends "api/event_base.html" %}
+
+{% comment %} The event post details as a grid view where image and discription are divided in the ratio 4:8 {% endcomment %}
+{% block preevent %}
+<div class="container">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img class="card-img img-fluid rounded-start" src={{ event.image.url }} alt="Error404" >
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{event.name}}</h2>
+            <p class="mb-1"><span class="fa fa-calendar"></span> {{ event.date }}</p>
+            <p class="mb-1"><span class="fa fa-clock-o"></span> {{ event.time }}</p>
+            <p class="mb-1"><span class="fa fa-map-marker"></span> {{ event.location }}</p>
+            <h4 class="mb-1">{{ event.description|safe }}</h4>
+            <div class="d-flex w-40 justify-content-between">
+              <h4><small class="text-muted"><span class="badge badge-secondary">
+                 {{ event.likes.count }}</span> like{{ event.likes.count|pluralize }}</small></h4>
+            </div>
+            {% if user in event.likes.all %}
+              <a href="{% url 'api:unlike' slug=event.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-heart"></span> UnLike</a>
+            {% else %}
+              <a href="{% url 'api:like' slug=event.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-heart-o"></span> Like</a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+{% endblock %}

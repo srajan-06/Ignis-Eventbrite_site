@@ -1,0 +1,15 @@
+{% extends "api/event_base.html" %}
+{% load bootstrap4 %}
+{% comment %} A bootstrap form for creating an Event {% endcomment %}
+{% block event_content %}
+<div class="container">
+  <h4>Create A New Event</h4>
+  <form method="POST" action="{% url 'api:create' %}" id="eventForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  		<button type="submit" class="btn btn-primary btn-large">Create</button>
+  	{% endbuttons %}
+  </form>
+</div>
+{% endblock %}

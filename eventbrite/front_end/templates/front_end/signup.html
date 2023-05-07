@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% comment %} these id's are accessed in app.js {% endcomment %}
+<div id="main"> 
+    <div id="app"></div>
+</div>
+
+{% comment %} A Bootstrap4 form for registration {% endcomment %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <h1>Sign Up</h1>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Register</button>
+    {% endbuttons %}
+  </form>
+</div>
+{% endblock %}

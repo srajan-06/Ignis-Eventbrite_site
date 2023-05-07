@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% comment %} HTML File which acts as a base for all other event related files which can be extended in other files {% endcomment %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% block preevent %}{% endblock %}
+    {% block event_content %}{% endblock %}
+    {% block postevent %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
