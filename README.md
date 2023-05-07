@@ -1,5 +1,6 @@
 # Ignis-Eventbrite_site
-Ignis tech task
+Ignis tech task.
+
 Screenshots of the UI:
 
 ![Eventbrite1](https://user-images.githubusercontent.com/94606073/236700630-ef4c75f2-11e9-4f56-8597-f8d04dd5e21c.png)
