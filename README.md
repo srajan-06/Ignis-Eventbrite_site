@@ -1,5 +1,6 @@
 # Ignis-Eventbrite_site
 Ignis tech task.
+Website for creating posts of events.
 
 Screenshots of the UI:
 
